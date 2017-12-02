@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# request is not for a file
+RewriteCond %{REQUEST_FILENAME} !-f
+# request is not for a directory
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ ?url=$1 [QSA,L]
