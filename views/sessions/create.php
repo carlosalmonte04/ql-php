@@ -17,7 +17,7 @@
         <input type="submit" class="login-btn" value="login">
       </div>
     </form>
-    <button id="signup-btn" class="login-btn" style="height: 25px">signup</button>
+    <!-- <button id="signup-btn" class="login-btn" style="height: 25px">signup</button> -->
   </div>
 </div>
 <script>

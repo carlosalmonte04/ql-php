@@ -126,7 +126,7 @@
 
       function handleLogOut() {
         localStorage.removeItem('token')
-        window.location.href = "/ql/?controller=sessions&action=create";
+        window.location.href = "/";
       }
 
       window.onload = function() {
