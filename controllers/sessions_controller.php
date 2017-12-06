@@ -15,10 +15,10 @@
       var_dump($content->Array);
 
       $statement = $conn->prepare("SELECT username, password FROM users WHERE username=:username;");
-      $statement->execute(array(':username' => $content->username));
+      $statement->execute(array(':username' => $content->Array[1]));
       $user = $statement->fetchAll()[0];
 
-      if ($user && password_verify($content->password, $user['password'])) {
+      if ($user && password_verify($content->Array[3], $user['password'])) {
         $key = "secure_key_that_no_one_knows";
         $token = array(
           "password" => $user,
