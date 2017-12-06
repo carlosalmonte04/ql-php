@@ -18,5 +18,14 @@
         <input type="submit" class="login-btn" value="signup">
       </div>
     </form>
+    <button class="login-btn" id="login-btn">login</button>
   </div>
 </div>
+<script>
+  window.onload = function() {
+    document.getElementById('login-btn').onclick = function(e) {
+      e.preventDefault()
+      window.location.href = '?controller=sessions&action=create'
+    }
+  }
+</script>
