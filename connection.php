@@ -26,8 +26,6 @@
           unset($dbstrarrhost);
           unset($dbstr);
           $dbanfang = 'mysql:host=' . $dbhost . ';dbname=' . $dbname;
-          var_dump($dbhost);
-          echo $dbhost;
           Db::$instance = new PDO($dbanfang, $dbuser, $dbpassword);
       }
       return self::$instance;
