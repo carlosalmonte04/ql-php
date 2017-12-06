@@ -2,6 +2,9 @@
   <div class="form-container">
     <h1>User Signup</h1>
     <form action="?controller=users&action=store" method="POST">
+      <span class="flash-message">
+        <?php echo (isset($flash_message) ? $flash_message : null); ?>
+      </span>
       <div>
         <label for="username">username</label>
         <input name="username" type="text">

@@ -1,8 +1,10 @@
 <?php
-  include_once('connection.php');
+  require 'vendor/autoload.php';
+
+  use \Firebase\JWT\JWT;
+
   class UsersController {
     public function store() {
-      var_dump(file_get_contents('php://input'));
       $user = $this->content_to_json(file_get_contents('php://input'));
 
       if($user->password === $user->passwordConf) {
@@ -11,10 +13,20 @@
         $hashed_password = password_hash($user->password, PASSWORD_DEFAULT);
         
         $statement->execute(array(':username' => $user->username, 'password' => $hashed_password));
+        
+        $key = "secure_key_that_no_one_knows";
+        $token = array(
+          "password" => $user,
+        );
+        $jwt = JWT::encode($token, $key);
+        $just_logged_in = true;
 
-        require_once('views/pages/users.php');
+        require_once('views/pages/dashboard.php');
       }
-      require_once('views/pages/create.php');
+      else {
+        $flash_message = "could not create user";
+        require_once('views/users/create.php');
+      }
     }
 
     public function create() {
