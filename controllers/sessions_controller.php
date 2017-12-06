@@ -13,8 +13,8 @@
       $conn = Db::getInstance();
       $content = $this->content_to_obj(file_get_contents('php://input'));
       var_dump($content);
-      $user->username = $content[0]
-      $user->password = $content[1]
+      $user->username = $content[0];
+      $user->password = $content[1];
       var_dump($user);
       $statement = $conn->prepare("USE heroku_96c5d443b8d5d0f;SELECT username, password FROM users WHERE username=:username;");
       $statement->execute(array(':username' => $content->username));
