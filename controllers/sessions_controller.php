@@ -12,11 +12,12 @@
     public function store() {
       $conn = Db::getInstance();
       $content = $this->content_to_obj(file_get_contents('php://input'));
-      var_dump($content->Array);
+      var_dump($content->Array[1]);
 
       $statement = $conn->prepare("SELECT username, password FROM users WHERE username=:username;");
       $statement->execute(array(':username' => $content->Array[1]));
       $user = $statement->fetchAll()[0];
+      var_dump($user);
 
       if ($user && password_verify($content->Array[3], $user['password'])) {
         $key = "secure_key_that_no_one_knows";
