@@ -15,7 +15,7 @@
       var_dump($content->Array[0]);
 
       $statement = $conn->prepare("SELECT username, password FROM users WHERE username=:username;");
-      $statement->execute(array(':username' => $content->Array[1]));
+      $statement->execute(array(':username' => $content->Array[0]));
       $user = $statement->fetchAll()[0];
       var_dump($user);
 
