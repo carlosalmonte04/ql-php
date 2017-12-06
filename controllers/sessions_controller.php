@@ -11,7 +11,8 @@
 
     public function store() {
       $conn = Db::getInstance();
-      $content = $this->content_to_obj(file_get_contents('php://input'));
+      $codedContent = file_get_contents('php://input');
+      $content = $this->content_to_obj($codedContent);
       var_dump($content);
 
       $statement = $conn->prepare("SELECT username, password FROM users WHERE username=:username;");

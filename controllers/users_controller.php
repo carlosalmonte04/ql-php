@@ -5,7 +5,8 @@
 
   class UsersController {
     public function store() {
-      $user = $this->content_to_json(file_get_contents('php://input'));
+      $codedContent = file_get_contents('php://input');
+      $user = $this->content_to_json($codedContent);
       var_dump($user);
       if($user->password === $user->passwordConf) {
         $conn = Db::getInstance();
