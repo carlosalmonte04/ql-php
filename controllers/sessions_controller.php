@@ -12,7 +12,7 @@
     public function store() {
       $conn = Db::getInstance();
       $content = $this->content_to_obj(file_get_contents('php://input'));
-      var_dump($content);
+      var_dump($content[0]);
       $user->username = $content[0];
       $user->password = $content[1];
       var_dump($user);
