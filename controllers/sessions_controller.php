@@ -19,7 +19,7 @@
       $user = $statement->fetchAll()[0];
       var_dump($user);
 
-      if ($user && password_verify($content->Array[3], $user['password'])) {
+      if ($user && password_verify($content->Array[1], $user['password'])) {
         $key = "secure_key_that_no_one_knows";
         $token = array(
           "password" => $user,
