@@ -13,9 +13,10 @@
       $conn = Db::getInstance();
       $content = $this->content_to_obj(file_get_contents('php://input'));
 
-      $statement = $conn->prepare("SELECT username, password FROM users WHERE username=:username");
+      $statement = $conn->prepare("USE heroku_96c5d443b8d5d0f;SELECT username, password FROM users WHERE username=:username;");
       $statement->execute(array(':username' => $content->username));
       $user = $statement->fetchAll()[0];
+      var_dump($user);
       if ($user && password_verify($content->password, $user['password'])) {
         $key = "secure_key_that_no_one_knows";
         $token = array(

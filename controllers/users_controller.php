@@ -9,7 +9,7 @@
 
       if($user->password === $user->passwordConf) {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("INSERT INTO users (username, password) VALUES (:username, :password);");
+        $statement = $conn->prepare("USE heroku_96c5d443b8d5d0f;INSERT INTO users (username, password) VALUES (:username, :password);");
         $hashed_password = password_hash($user->password, PASSWORD_DEFAULT);
         var_dump($hashed_password);
         $statement->execute(array(':username' => $user->username, 'password' => $hashed_password));
