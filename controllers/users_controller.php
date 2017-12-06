@@ -12,8 +12,9 @@
         
         $statement->execute(array(':username' => $user->username, 'password' => $hashed_password));
 
+        require_once('views/pages/users.php');
       }
-      require_once('views/pages/users.php');
+      require_once('views/pages/create.php');
     }
 
     public function create() {
