@@ -6,10 +6,10 @@
   class UsersController {
     public function store() {
       $user = $this->content_to_json(file_get_contents('php://input'));
-
+      var_dump($user);
       if($user->password === $user->passwordConf) {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("USE heroku_96c5d443b8d5d0f;INSERT INTO users (username, password) VALUES (:username, :password);");
+        $statement = $conn->prepare("INSERT INTO users (username, password) VALUES (:username, :password);");
         $hashed_password = password_hash($user->password, PASSWORD_DEFAULT);
         var_dump($hashed_password);
         $statement->execute(array(':username' => $user->username, 'password' => $hashed_password));
