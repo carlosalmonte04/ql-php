@@ -7,7 +7,18 @@
 
       if($user->password === $user->passwordConf) {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("INSERT INTO users (username, password) VALUES (:username, :password);");
+        $statement = $conn->prepare("CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(200) NOT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `role` varchar(200) DEFAULT 'read-only',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `username_index` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1");
         $hashed_password = password_hash($user->password, PASSWORD_DEFAULT);
         
         $statement->execute(array(':username' => $user->username, 'password' => $hashed_password));
