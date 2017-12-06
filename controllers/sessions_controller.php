@@ -12,7 +12,7 @@
     public function store() {
       $conn = Db::getInstance();
       $content = $this->content_to_obj(file_get_contents('php://input'));
-      var_dump($content)
+      var_dump($content);
 
       $statement = $conn->prepare("USE heroku_96c5d443b8d5d0f;SELECT username, password FROM users WHERE username=:username;");
       $statement->execute(array(':username' => $content->username));
